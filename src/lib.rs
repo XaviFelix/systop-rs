@@ -1,5 +1,6 @@
 //files in src
-pub mod cpu;
+pub mod macros;
 
 //directories
+pub mod components;
 pub mod models;
