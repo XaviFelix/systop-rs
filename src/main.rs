@@ -1,8 +1,12 @@
-use procfs::{CpuInfo, Current};
-use systop_rs::cpu::{print_all_cores, to_core_info};
+//TODO: Currently using raw system data in KB, need to convert data to GB or MB
+//TODO: Create a dedicated display decorator for the terminal
+//TODO: Use Clap and combine it with tokio for interval refreshing
+
+use procfs::{CpuInfo, Current, Meminfo};
+use systop_rs::components::{cpu::*, mem::*};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    //TODO: test main behavior for CPU
+    //TODO: test CPU behavior
     let cpuinfo = CpuInfo::current()?;
 
     let mut all = Vec::new();
@@ -13,6 +17,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     }
     print_all_cores(&all);
+
+    //TODO: test mem behavior
+    let meminfo = Meminfo::current();
+    let current_mem_info = to_mem_info(&meminfo);
+    print_mem_info(&current_mem_info);
+
+    //TODO: test disk behaivor
 
     Ok(())
 }
