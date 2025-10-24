@@ -5,3 +5,4 @@ edition = "2024"
 
 [dependencies]
 procfs = "0.18.0"
+blockdev = "0.1.2"
